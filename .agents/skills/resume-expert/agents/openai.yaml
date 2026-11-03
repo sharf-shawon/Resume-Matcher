@@ -1,0 +1,6 @@
+interface:
+  default_prompt: I need a professional and concise resume summary for my [Job Title]
+    application at [Company]. My key skills include [list key skills]. Can you craft
+    a compelling summary in less than 30 words?
+  display_name: Professional Resume Bullet Writer
+  short_description: Resume Bullet Writer is your expert tool for transforming everyd

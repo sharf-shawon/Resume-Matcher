@@ -152,9 +152,9 @@ The app's critique prompt uses this exact text (a test keeps the two in sync).
 These are the rules the app's own tailoring follows, and the validator enforces most of them.
 
 - Keep `personalInfo`, employers, job titles, locations, dates (`years`, copied exactly, months included), the number of entries and the number of bullets.
-- Never add a skill, tool, technology, certification, employer, metric or responsibility the source does not contain. Never raise seniority.
-- Rephrase existing bullets to use the job's wording where the source already shows that experience. Reorder skills by relevance, but never remove one.
-- Rewrite the summary for the role from facts already in the resume.
+- Never add a skill, tool, technology, certification, employer, metric or responsibility the source does not contain. Never raise seniority. Never insert `"XXX"` or bracketed placeholders (`[Metric]`, `[Company]`).
+- Rephrase existing bullets to use the job's wording where the source already shows that experience, framing each bullet with Problem-Action-Result (PAR) or Situation-Task-Action-Result (STAR) structure and strong action verbs. Reorder skills by relevance, but never remove one.
+- Rewrite the summary for the role as a concise 2-sentence paragraph under 30 words total (no bullet points), using only facts already in the resume.
 - Write in the resume's language. No em dashes. Avoid stock phrases such as "spearheaded", "leveraged", "orchestrated", "utilized", "synergy", "cutting-edge" and "results-driven".
 - If the job needs something the user has not shown, say so; do not paper over it. `score.missing_keywords` lists what the resume does not support: report those to the user as gaps they can add in the editor if they really have them. A low score from honest gaps is the right result.
 - The `date_consistency` part of the score is low when the source mixes date formats (`Mar 2022 - Present` beside `2015 - 2019`). Keep the dates as written and tell the user they can make the formats match in their master resume.
@@ -175,8 +175,8 @@ The app's AI buttons hand these prompts to you:
 
 | Request | Tools |
 |---|---|
-| Cover letter | `get_resume_job resume_id=<id>`, write it like the app's default: under one page, 200 to 300 words in 3 or 4 paragraphs (a hook tied to one detail of the job, two or three matching examples from the resume, why this company using what the job description says, a specific close). Greet a named person only if the job names one, else "Dear Hiring Manager"; use only facts from the resume and the job description, `set_cover_letter resume_id=<id> content=@…` |
-| Outreach message | Same, 70 to 100 words, opening with something specific from the job, then `set_outreach_message` |
+| Cover letter | `get_resume_job resume_id=<id>`, write it like the app's default: under one page, 200 to 300 words in 3 or 4 paragraphs (an opening hook tied to one detail of the job, two or three PAR/STAR matching examples from the resume with verified metrics or qualitative scope, why this company using what the job description says, a specific close). Greet a named person only if the job names one, else "Dear Hiring Manager"; use only facts from the resume and the job description (no `"XXX"` or placeholders, no em dashes), `set_cover_letter resume_id=<id> content=@…` |
+| Outreach message | Same factual and no-placeholder rules, 75 to 125 words (under 150 words), opening with the specific role and a team/product/challenge detail from the job, 1 or 2 evidence-backed qualifications from the resume, and one low-friction call to action (no subject line unless requested for email, no em dashes), then `set_outreach_message` |
 | Enhance a resume | Ask the user about missing results, numbers and tools; then `get_resume`, edit, `update_resume`. Add only what they told you |
 | Rewrite parts | Show the user the changes first, then `update_resume` |
 | Improve writing | Run the two writing rounds from step 6 on that resume, with no job: `get_resume`, critique, rewrite, `update_resume`, `verify_resume` |

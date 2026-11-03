@@ -79,7 +79,6 @@ apps/backend/data/config.json
 skills-lock.json
 
 # AI assistant tool folders (personal workflow, not tracked)
-.agents/
 .github/agents/
 .github/skills/
 .github/prompts/

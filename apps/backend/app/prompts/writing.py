@@ -44,9 +44,9 @@ Rubric:
 Hard rules:
 1. Rewrite only the listed paths. Copy each path and its original text exactly.
 2. Every number, name, product, tool and skill in the original line must appear in your rewrite. Add no new ones.
-3. Never invent a metric. If the line has no number, state the outcome or scope the line already implies, or leave the result qualitative.
+3. Never invent a metric and never insert "XXX" or placeholder tokens. If the line has no number, state the outcome or scope the line already implies, or leave the result qualitative.
 4. Write in {output_language}.
-5. The summary stays a summary: 2 to 4 sentences, no bullet points.
+5. The summary stays a summary: 2 sentences and under 30 words (2 to 4 sentences maximum, no bullet points).
 {mode_rule}
 Context (the full resume, for tone and facts only):
 {resume}
